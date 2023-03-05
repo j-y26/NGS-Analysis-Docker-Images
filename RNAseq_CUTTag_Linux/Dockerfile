@@ -1,11 +1,11 @@
 FROM ubuntu:22.04
 LABEL maintainer="Jielin Yang"
 LABEL email="jielin.yang@mail.utoronto.ca"
-LABEL version="1.0"
+LABEL version="1.1"
 LABEL description="Docker image for RNAseq and CUT&Tag analysis on Linux"
 
-# Install Java JDK 1.8
-RUN apt-get update -y && apt-get install -y openjdk-8-jdk
+# Install Java JDK 17
+RUN apt-get update -y && apt-get install -y openjdk-17-jdk
 
 # Initialize command line interface
 RUN apt-get update -y && apt-get install -y \
@@ -171,10 +171,10 @@ RUN wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmoma
     && rm Trimmomatic-0.39.zip
 
 #######################
-# Picard 2.27.5
+# Picard 3.0.0
 #######################
 WORKDIR /tmp
-RUN wget https://github.com/broadinstitute/picard/releases/download/2.27.5/picard.jar \
+RUN wget https://github.com/broadinstitute/picard/releases/download/3.0.0/picard.jar \
     && mv picard.jar /opt
 
 #######################
@@ -192,8 +192,8 @@ RUN pip3 install macs3
 RUN echo ". ~/.profile" >> /root/.bash_profile
 
 # Add the rest of the lines to set PATH
-RUN echo "export PATH=/opt/stringtie-2.2.1:/opt/samtools-1.16/bin: \
-    /opt/htslib-1.16/bin:/opt/bedtools2/bin:/opt/bowtie2-2.5.1: \
+RUN echo "export PATH=/opt/stringtie-2.2.1:/opt/samtools-1.17/bin: \
+    /opt/htslib-1.17/bin:/opt/bedtools2/bin:/opt/bowtie2-2.5.1: \
     /opt/STAR-2.7.10b/source:/opt/subread-2.0.3-Linux-x86_64/bin:/opt:$PATH" >> /root/.bash_profile
 
 

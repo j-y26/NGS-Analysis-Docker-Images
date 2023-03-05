@@ -1,7 +1,7 @@
 FROM bioconductor/bioconductor_docker:RELEASE_3_16
 LABEL maintainer="Jielin Yang"
 LABEL email="jielin.yang@mail.utoronto.ca"
-LABEL version="1.0"
+LABEL version="1.1"
 LABEL description="Docker image for RNAseq and CUT&Tag analysis in R"
 
 # Install R packages
@@ -29,4 +29,5 @@ RUN R --vanilla -e 'BiocManager::install(c("GEOQuery", \
 RUN R --vanilla -e 'BiocManager::install(c("GSEABase", \
 "GSVA", "BiocStyle", "fgsea", "BiocParallel"))'
 
-RUN R --vanilla -e 'BiocManager::install(c("GSA", "RCy3", "seurat"))'
+RUN R --vanilla -e 'BiocManager::install(c("GSA", "RCy3", "seurat", \
+"circlize"))'
