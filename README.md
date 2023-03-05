@@ -79,7 +79,7 @@ The image is based on Bioconductoe release 3.16 and contains the following R pac
 # Navigate to the directory where you would like to store your project
 
 # Pull and run the docker image
-docker run -e PASSWORD=changeit -v ${pwd}:/home/rstudio/projects -p 8787:8787 kirin26/rnaseq-cuttag_r:v1.0
+docker run -e PASSWORD=changeit -v ${pwd}:/home/rstudio/projects -p 8787:8787 kirin26/rnaseq-cuttag_r:v1.1
 ```
 
 In your browser, navigate to http://localhost:8787 and log in with username rstudio and the password you specified.
@@ -140,7 +140,7 @@ The image is based on Ubuntu 22.04 with the following specifications:
 # Navigate to the directory where you would like to store your project
 
 # Pull and run the docker image
-docker run -it -v ${pwd}:/home kirin26/rnaseq-cuttag_linux:v1.0
+docker run -it -v ${pwd}:/home kirin26/rnaseq-cuttag_linux:v1.1
 
 # Exit the linux container
 exit
