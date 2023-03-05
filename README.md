@@ -9,16 +9,16 @@ Docker images are available at https://hub.docker.com/kirin26/
 
 - [NGS-Analysis-Docker-Images](#ngs-analysis-docker-images)
 - [Docker Images](#docker-images)
-  - [rnaseq-cuttag\_r:v1.0](#rnaseq-cuttag_rv10)
+  - [rnaseq-cuttag\_r:v1.1](#rnaseq-cuttag_rv11)
     - [Usage](#usage)
-  - [rnaseq-cuttag\_linux:v1.0](#rnaseq-cuttag_linuxv10)
+  - [rnaseq-cuttag\_linux:v1.1](#rnaseq-cuttag_linuxv11)
     - [Softwares:](#softwares)
     - [Environment:](#environment)
     - [Usage](#usage-1)
 
 
 
-## rnaseq-cuttag_r:v1.0
+## rnaseq-cuttag_r:v1.1
 
 **A docker image for analysis of RNA sequencing data and CUT&Tag data using R.**
 
@@ -71,6 +71,7 @@ The image is based on Bioconductoe release 3.16 and contains the following R pac
 - GSA 
 - RCy3 
 - seurat
+- circlize
 
 ### Usage
 
@@ -86,7 +87,7 @@ In your browser, navigate to http://localhost:8787 and log in with username rstu
 
 ---
 
-## rnaseq-cuttag_linux:v1.0
+## rnaseq-cuttag_linux:v1.1
 
 **A docker image for analysis of RNA sequencing data and CUT&Tag data based on command line tools**
 
@@ -109,14 +110,14 @@ The image is based on Ubuntu 22.04 with the following specifications:
 - Sambamba 0.8.2
 - Fastp 0.23.2
 - Trimmomatic 0.39
-- Picard 2.27.5
+- Picard 3.0.0
 
 
 ### Environment:
 **Ubuntu 22.04**
 
 **Java**
- - OpenJDK 8
+ - OpenJDK 17
 
 **Python 3**
 - numpy (1.24.2)
@@ -132,11 +133,6 @@ The image is based on Ubuntu 22.04 with the following specifications:
 - pyyaml (6.0)
 - py2bit (0.3.0)
 - cython
-
-
-
-Note that Picard 2.27.5 requires java 8. As of Picard 3.0, Picard requires java 17. The version of java will be update concurrently with the version of Picard in future releases.
-
 
 ### Usage
 

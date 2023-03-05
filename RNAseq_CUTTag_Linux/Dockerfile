@@ -196,6 +196,8 @@ RUN echo "export PATH=/opt/stringtie-2.2.1:/opt/samtools-1.17/bin: \
     /opt/htslib-1.17/bin:/opt/bedtools2/bin:/opt/bowtie2-2.5.1: \
     /opt/STAR-2.7.10b/source:/opt/subread-2.0.3-Linux-x86_64/bin:/opt:$PATH" >> /root/.bash_profile
 
+# Setting the shell prompt to $
+RUN echo "export PS1='\$ '" >> /root/.bash_profile
 
 # Clean up
 RUN apt-get clean \
