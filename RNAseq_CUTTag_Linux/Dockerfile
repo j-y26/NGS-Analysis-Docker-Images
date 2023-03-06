@@ -10,6 +10,7 @@ RUN apt-get update -y && apt-get install -y openjdk-17-jdk
 # Initialize command line interface
 RUN apt-get update -y && apt-get install -y \
     build-essential \
+    apt-utils \
     bzip2 \
     cmake \
     default-jdk \
