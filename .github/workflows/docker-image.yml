@@ -24,7 +24,7 @@ jobs:
       run: docker build . --file ./RNAseq_CUTTag_Linux/Dockerfile --tag kirin26/rnaseq-cuttag_linux:v1.1
     - name: Build the Docker image for RNAseq_CUTTag_R
       run: docker build . --file ./RNAseq_CUTTag_R/Dockerfile --tag kirin26/rnaseq-cuttag_r:v1.1
-test: $(date +%s)
+  push:
     - name: Push RNAseq_CUTTag_Linux to Docker Hub
       run: docker push kirin26/rnaseq-cuttag_linux:v1.1
     - name: Push RNAseq_CUTTag_Rto Docker Hub
