@@ -16,4 +16,3 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file ./RNAseq_CUTTag_Linux/Dockerfile --tag kirin26/rnaseq-cuttag_linux:v1.1
-           docker build . --file ./RNAseq_CUTTag_R/Dockerfile --tag kirin26/rnaseq-cuttag_r:v1.1
