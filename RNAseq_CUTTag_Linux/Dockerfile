@@ -177,6 +177,17 @@ WORKDIR /tmp
 RUN wget https://github.com/broadinstitute/picard/releases/download/3.0.0/picard.jar \
     && mv picard.jar /opt
 
+
+#######################
+# SEACR 1.3
+#######################
+WORKDIR /opt
+RUN mkdir SEACR-1.3
+WORKDIR /opt/SEACR-1.3
+RUN wget https://github.com/FredHutch/SEACR/blob/master/SEACR_1.3.R
+RUN wget https://github.com/FredHutch/SEACR/blob/master/SEACR_1.3.sh
+
+
 #######################
 # Deeptools 3.5.1
 #######################
@@ -198,6 +209,11 @@ RUN echo "export PATH=/opt/stringtie-2.2.1:/opt/samtools-1.17/bin: \
 
 # Setting the shell prompt to $
 RUN echo "export PS1='\$ '" >> /root/.bash_profile
+
+# Set variables to refer to non-linux programs
+RUN echo "export TRIMMOMATIC=/opt/Trimmomatic-0.39/trimmomatic-0.39.jar" >> /root/.bash_profile
+RUN echo "export PICARD=/opt/picard.jar" >> /root/.bash_profile
+RUN echo "export SEACR=/opt/SEACR-1.3/SEACR_1.3.sh" >> /root/.bash_profile
 
 # Clean up
 RUN apt-get clean \

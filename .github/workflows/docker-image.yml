@@ -1,0 +1,31 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker Login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run:
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build the Docker image for RNAseq_CUTTag_Linux
+      run: docker build . --file ./RNAseq_CUTTag_Linux/Dockerfile --tag kirin26/rnaseq-cuttag_linux:v1.1
+    - name: Build the Docker image for RNAseq_CUTTag_R
+      run: docker build . --file ./RNAseq_CUTTag_R/Dockerfile --tag kirin26/rnaseq-cuttag_r:v1.1
+test: $(date +%s)
+    - name: Push RNAseq_CUTTag_Linux to Docker Hub
+      run: docker push kirin26/rnaseq-cuttag_linux:v1.1
+    - name: Push RNAseq_CUTTag_Rto Docker Hub
+      run: docker push kirin26/rnaseq-cuttag_r:v1.1

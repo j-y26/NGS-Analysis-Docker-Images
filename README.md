@@ -52,6 +52,7 @@ The image is based on Bioconductoe release 3.16 and contains the following R pac
 - reshape2 
 - here 
 - pheatmap 
+- devtools
 
 **Bioconductor:**
 - GEOQuery 
@@ -72,6 +73,9 @@ The image is based on Bioconductoe release 3.16 and contains the following R pac
 - RCy3 
 - seurat
 - circlize
+
+**GitHub:**
+- stjude/ChIPseqSpikeInFree
 
 ### Usage
 
@@ -133,6 +137,7 @@ The image is based on Ubuntu 22.04 with the following specifications:
 - pyyaml (6.0)
 - py2bit (0.3.0)
 - cython
+
 
 ### Usage
 

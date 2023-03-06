@@ -18,7 +18,8 @@ plotly \
 kableExtra \
 stringr stringi \
 DT \
-reshape2 here pheatmap
+reshape2 here pheatmap \
+devtools
 
 
 # Install Bioconductor packages
@@ -30,4 +31,7 @@ RUN R --vanilla -e 'BiocManager::install(c("GSEABase", \
 "GSVA", "BiocStyle", "fgsea", "BiocParallel"))'
 
 RUN R --vanilla -e 'BiocManager::install(c("GSA", "RCy3", "seurat", \
-"circlize"))'
+"circlize", "chromVAR"))'
+
+# Install R packages from GitHub
+RUN R --vanilla -e 'devtools::install_github("stjude/ChIPseqSpikeInFree")'
