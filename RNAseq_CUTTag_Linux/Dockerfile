@@ -87,7 +87,7 @@ WORKDIR /tmp
 RUN wget https://sourceforge.net/projects/samtools/files/samtools/1.17/samtools-1.17.tar.bz2/download -O samtools-1.17.tar.bz2 \
     && tar -xjf samtools-1.17.tar.bz2 \
     && cd /tmp/samtools-1.17 \
-    && ./configure --prefix=$SAMTOOLS_DIR --with-htslib=$HTSLIB_DIR \
+    && ./configure --prefix=$SAMTOOLS_DIR \
     && make \
     && make install \
     && cd .. \
