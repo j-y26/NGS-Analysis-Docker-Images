@@ -9,16 +9,16 @@ Docker images are available at https://hub.docker.com/kirin26/
 
 - [NGS-Analysis-Docker-Images](#ngs-analysis-docker-images)
 - [Docker Images](#docker-images)
-  - [rnaseq-cuttag\_r:v1.1](#rnaseq-cuttag_rv11)
+  - [rnaseq-cuttag\_r:v1.2](#rnaseq-cuttag_rv12)
     - [Usage](#usage)
-  - [rnaseq-cuttag\_linux:v1.1](#rnaseq-cuttag_linuxv11)
+  - [rnaseq-cuttag\_linux:v1.2](#rnaseq-cuttag_linuxv12)
     - [Softwares:](#softwares)
     - [Environment:](#environment)
     - [Usage](#usage-1)
 
 
 
-## rnaseq-cuttag_r:v1.1
+## rnaseq-cuttag_r:v1.2
 
 **A docker image for analysis of RNA sequencing data and CUT&Tag data using R.**
 
@@ -53,6 +53,16 @@ The image is based on Bioconductoe release 3.16 and contains the following R pac
 - here 
 - pheatmap 
 - devtools
+- cowplot
+- ggrepel
+- readxl
+- stringi
+- stringr
+- CVXR
+- mixtools
+- randomForest
+- minerva
+- igraph
 
 **Bioconductor:**
 - GEOQuery 
@@ -73,6 +83,9 @@ The image is based on Bioconductoe release 3.16 and contains the following R pac
 - RCy3 
 - seurat
 - circlize
+- gprofiler2
+- viper
+- minet
 
 **GitHub:**
 - stjude/ChIPseqSpikeInFree
@@ -83,15 +96,15 @@ The image is based on Bioconductoe release 3.16 and contains the following R pac
 # Navigate to the directory where you would like to store your project
 
 # Pull and run the docker image
-docker run -e PASSWORD=changeit -v ${pwd}:/home/rstudio/projects -p 8787:8787 kirin26/rnaseq-cuttag_r:v1.1
+docker run -e PASSWORD=changeit -v ${pwd}:/home/rstudio/projects -p 8787:8787 kirin26/rnaseq-cuttag_r:v1.2
 ```
 
-In your browser, navigate to http://localhost:8787 and log in with username rstudio and the password you specified.
+In your browser, navigate to http://localhost:8787 and log in with username `rstudio` and the password you specified.
 
 
 ---
 
-## rnaseq-cuttag_linux:v1.1
+## rnaseq-cuttag_linux:v1.2
 
 **A docker image for analysis of RNA sequencing data and CUT&Tag data based on command line tools**
 
@@ -115,6 +128,7 @@ The image is based on Ubuntu 22.04 with the following specifications:
 - Fastp 0.23.2
 - Trimmomatic 0.39
 - Picard 3.0.0
+- HOMER 4.11
 
 
 ### Environment:
@@ -145,7 +159,7 @@ The image is based on Ubuntu 22.04 with the following specifications:
 # Navigate to the directory where you would like to store your project
 
 # Pull and run the docker image
-docker run -it -v ${pwd}:/home kirin26/rnaseq-cuttag_linux:v1.1
+docker run -it -v ${pwd}:/home kirin26/rnaseq-cuttag_linux:v1.2
 
 # Exit the linux container
 exit

@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 LABEL maintainer="Jielin Yang"
 LABEL email="jielin.yang@mail.utoronto.ca"
-LABEL version="1.1"
+LABEL version="1.2"
 LABEL description="Docker image for RNAseq and CUT&Tag analysis on Linux"
 
 # Install Java JDK 17
@@ -39,7 +39,8 @@ RUN apt-get update -y && apt-get install -y \
     libglu1-mesa-dev \
     unzip \
     gzip \
-    tmux
+    tmux \
+    perl
 
 # Install python
 RUN apt-get install -y python3 python-is-python3 python3-dev python3-pip python3-setuptools python3-wheel
@@ -190,6 +191,18 @@ RUN wget https://github.com/FredHutch/SEACR/blob/master/SEACR_1.3.sh
 
 
 #######################
+# HOMER 4.11.1
+#######################
+WORKDIR /opt
+RUN wget http://homer.ucsd.edu/homer/configureHomer.pl \
+    && perl configureHomer.pl -install homer \
+    && rm configureHomer.pl
+# Note that only the HOMER software is installed, but the genome files and
+# other data files are not installed. These can be installed by running
+# perl configureHomer.pl -install hg38 (or whatever genome you want to install)
+
+
+#######################
 # Deeptools 3.5.1
 #######################
 RUN pip3 install deeptools==3.5.1
@@ -206,7 +219,8 @@ RUN echo ". ~/.profile" >> /root/.bash_profile
 # Add the rest of the lines to set PATH
 RUN echo "export PATH=/opt/stringtie-2.2.1:/opt/samtools-1.17/bin: \
     /opt/htslib-1.17/bin:/opt/bedtools2/bin:/opt/bowtie2-2.5.1: \
-    /opt/STAR-2.7.10b/source:/opt/subread-2.0.3-Linux-x86_64/bin:/opt:$PATH" >> /root/.bash_profile
+    /opt/STAR-2.7.10b/source:/opt/subread-2.0.3-Linux-x86_64/bin:/opt: \
+    /opt/homer/bin:$PATH" >> /root/.bash_profile
 
 # Setting the shell prompt to $
 RUN echo "export PS1='\$ '" >> /root/.bash_profile
@@ -221,3 +235,6 @@ RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get autoremove -y \
     && apt-get autoclean -y
+
+# Run bash_profile
+RUN source /root/.bash_profile
