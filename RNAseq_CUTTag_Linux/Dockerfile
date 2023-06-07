@@ -237,6 +237,3 @@ RUN apt-get clean \
     && apt-get autoclean -y \
     && cd /home
 
-# Run bash_profile
-RUN source /root/.bash_profile
-
