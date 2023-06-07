@@ -88,7 +88,7 @@ WORKDIR /tmp
 RUN wget https://sourceforge.net/projects/samtools/files/samtools/1.17/samtools-1.17.tar.bz2/download -O samtools-1.17.tar.bz2 \
     && tar -xjf samtools-1.17.tar.bz2 \
     && cd /tmp/samtools-1.17 \
-    && ./configure --prefix=$SAMTOOLS_DIR --with-htslib=$HTSLIB_DIR \
+    && ./configure --prefix=$SAMTOOLS_DIR \
     && make \
     && make install \
     && cd .. \
@@ -151,8 +151,7 @@ WORKDIR /tmp
 RUN wget https://github.com/biod/sambamba/releases/download/v0.8.2/sambamba-0.8.2-linux-amd64-static.gz -O sambamba-0.8.2.gz \
     && gunzip sambamba-0.8.2.gz \
     && mv sambamba-0.8.2 /opt \
-    && chmod +x /opt/sambamba-0.8.2 \
-    && export PATH=/opt:$PATH
+    && chmod +x /opt/sambamba-0.8.2
 
 #######################
 # Fastp 0.23.2
@@ -160,8 +159,7 @@ RUN wget https://github.com/biod/sambamba/releases/download/v0.8.2/sambamba-0.8.
 WORKDIR /tmp
 RUN wget http://opengene.org/fastp/fastp \
     && mv fastp /opt \
-    && chmod +x /opt/fastp \
-    && export PATH=/opt:$PATH
+    && chmod +x /opt/fastp
 
 #######################
 # Trimmomatic 0.39
@@ -212,15 +210,17 @@ RUN pip3 install deeptools==3.5.1
 #######################
 RUN pip3 install macs3
 
+# Export PATH to include all the programs
+RUN export PATH=$PATH:/opt/stringtie-2.2.1:/opt/samtools-1.17/bin:/opt/htslib-1.17/bin:/opt/bedtools2/bin:/opt/bowtie2-2.5.1:/opt/STAR-2.7.10b/source:/opt/subread-2.0.3-Linux-x86_64/bin:/opt
 
 # Create .bash_profile and add the first line
 RUN echo ". ~/.profile" >> /root/.bash_profile
 
 # Add the rest of the lines to set PATH
-RUN echo "export PATH=/opt/stringtie-2.2.1:/opt/samtools-1.17/bin: \
+RUN echo "export PATH=$PATH:/opt/stringtie-2.2.1:/opt/samtools-1.17/bin: \
     /opt/htslib-1.17/bin:/opt/bedtools2/bin:/opt/bowtie2-2.5.1: \
     /opt/STAR-2.7.10b/source:/opt/subread-2.0.3-Linux-x86_64/bin:/opt: \
-    /opt/homer/bin:$PATH" >> /root/.bash_profile
+    /opt/homer/bin" >> /root/.bash_profile
 
 # Setting the shell prompt to $
 RUN echo "export PS1='\$ '" >> /root/.bash_profile
@@ -234,7 +234,9 @@ RUN echo "export SEACR=/opt/SEACR-1.3/SEACR_1.3.sh" >> /root/.bash_profile
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get autoremove -y \
-    && apt-get autoclean -y
+    && apt-get autoclean -y \
+    && cd /home
 
 # Run bash_profile
 RUN source /root/.bash_profile
+
