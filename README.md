@@ -22,7 +22,7 @@ Docker images are available at https://hub.docker.com/kirin26/
 
 **A docker image for analysis of RNA sequencing data and CUT&Tag data using R.**
 
-![](https://img.shields.io/badge/tag-v1.1-brightgreen)
+![](https://img.shields.io/badge/tag-v1.2-brightgreen)
 ![](https://img.shields.io/badge/tag-latest-orange)
 
 [Link to Docker Hub](https://hub.docker.com/r/kirin26/rnaseq-cuttag_r)
@@ -108,7 +108,7 @@ In your browser, navigate to http://localhost:8787 and log in with username `rst
 
 **A docker image for analysis of RNA sequencing data and CUT&Tag data based on command line tools**
 
-![](https://img.shields.io/badge/tag-v1.1-blue)
+![](https://img.shields.io/badge/tag-v1.2-blue)
 ![](https://img.shields.io/badge/tag-latest-orange)
 
 [Link to Docker Hub](https://hub.docker.com/r/kirin26/rnaseq-cuttag_linux)
